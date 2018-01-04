@@ -1,0 +1,77 @@
+---
+title: "Chapter 1 Characteristisc of Time Series"
+author: "Jieli Zhou"
+date: "1/4/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Install astsa package
+# install.packages("devtools")
+# devtools::install_github("nickpoison/astsa")
+```
+
+# Johnson & Johnson Quarterly Earnings
+```{r}
+library(astsa)
+plot(jj, type="o", ylab="Quarterly Earnings per Share")
+```
+
+
+
+# Global Warming
+```{r}
+plot(globtemp, type="o", ylab="Global Temperature Deviations")
+```
+
+# Speech Data
+```{r}
+plot(speech)
+```
+
+
+
+# Dow Jones Industrial Average (2006-04-20 to 2016-04-20)
+```{r}
+library(xts)
+djiar = diff(log(djia$Close))[-1]
+plot(djiar, main = "DJIA Returns", type = "o")
+```
+
+
+# 2017 DJIA (2017-01-01 to 2017-12-31)
+```{r}
+# install.packages("TTR");
+library(TTR)
+djia2017 = getYahooData("^DJI", start=20170101, end=20171231, freq="daily")
+# library(quantmod)
+# djia2017 = getSymbols("^DJI", start=20170101, end=20171231, freq="daily")
+djiar2017 = diff(log(djia2017$Close))[-1]
+plot(djiar2017, main = "DJIA Returns in 2017", type="o")
+```
+
+
+
+# EI Nino and Fish Population
+```{r}
+plot(soi, ylab = "", xlab = "", main="Southern Oscillation Index")
+plot(rec, ylab = "", xlab = "", main="Recruitment")
+```
+
+# fMRI Imaging
+
+```{r}
+ts.plot(fmri1[,2:5], col=1:4, ylab = "BOLD", main="Cortex")
+ts.plot(fmri1[,6:9], col=1:4, ylab = "BOLD", main="Thalamus & Cerebellum")
+```
+
+# Earthquakes and Explosions
+```{r}
+plot(EQ5, main = "Earthquake")
+plot(EXP6, main = "Explosion")
+```
+
